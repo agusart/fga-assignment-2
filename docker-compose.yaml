@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  fga:
+    container_name: fga
+    build:
+      context: .
+    env_file: .env
+    ports:
+      - ${APP_PORT}:$APP_PORT
+    volumes:
+      - ./:/app
+    depends_on:
+      - fga-db
+    networks:
+      - net
+
+  fga-db:
+    image: postgres:10-alpine
+    volumes:
+      - db_data:/var/lib/postgresql
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    env_file: .env
+    networks:
+      - net
+
+  fga-admin:
+    image: adminer
+    restart: always
+    networks:
+      - net
+    depends_on:
+      - fga-db
+    ports:
+      - "8090:8080"
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  db_data:
