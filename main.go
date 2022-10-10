@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"tugas2/database"
+	router "tugas2/router"
 )
 
 func main() {
@@ -23,5 +24,7 @@ func main() {
 	}
 
 	db := database.StartDB(dbConfig)
+	routers := router.StartRouter(db)
 
+	routers.Run(":8080")
 }
