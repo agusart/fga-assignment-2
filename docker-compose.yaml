@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  fga:
-    container_name: fga
+  fga-assignment-2:
+    container_name: fga-assignment2
     build:
       context: .
     env_file: .env
@@ -15,7 +15,7 @@ services:
     networks:
       - net
 
-  fga-db:
+  fga-assignment-db-2:
     image: postgres:10-alpine
     volumes:
       - db_data:/var/lib/postgresql
@@ -25,13 +25,13 @@ services:
     networks:
       - net
 
-  fga-admin:
+  fga-assignment-db-2-admin:
     image: adminer
     restart: always
     networks:
       - net
     depends_on:
-      - fga-db
+      - fga-assignment-db-2
     ports:
       - "8090:8080"
 
