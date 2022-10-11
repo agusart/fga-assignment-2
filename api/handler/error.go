@@ -1,8 +1,6 @@
 package handler
 
-var (
-	ValidationError = ValidationErrorResponse{
-		Status:  "ER-422",
-		Message: "validation-failed",
-	}
+const (
+	BadRequestErrorCode = "ER-400"
+	ValidationError     = "ER-422"
 )

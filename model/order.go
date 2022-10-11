@@ -16,7 +16,7 @@ type Item struct {
 	gorm.Model
 	ItemCode    string
 	Description string
-	Quantity    int
+	Quantity    uint
 	LineItemID  int
 	OrderID     uint
 }
