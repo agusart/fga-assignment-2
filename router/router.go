@@ -17,7 +17,10 @@ func StartRouter(db *gorm.DB) *gin.Engine {
 		})
 
 		api.GET("/orders", v1.GetOrders(db))
+		api.DELETE("/orders/:orderID", v1.DeleteOrder(db))
+
 		api.Use(middleware.RequestMustBeJSON()).POST("/orders", v1.CreateNewOrder(db))
+		api.Use(middleware.RequestMustBeJSON()).PUT("/orders/:orderID", v1.UpdateOrder(db))
 
 	}
 
